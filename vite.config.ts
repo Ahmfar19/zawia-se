@@ -1,18 +1,13 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
+import { defineConfig } from 'vite';
+import solidPlugin from 'vite-plugin-solid';
+import svgLoader from 'vite-svg-loader';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    svgr({
-      svgrOptions: {
-        icon: true,
-        // This will transform your SVG to a React component
-        exportType: "named",
-        namedExport: "ReactComponent",
-      },
-    }),
-  ],
+    plugins: [solidPlugin(), svgLoader()],
+    server: {
+        port: 3000,
+    },
+    build: {
+        target: 'esnext',
+    },
 });

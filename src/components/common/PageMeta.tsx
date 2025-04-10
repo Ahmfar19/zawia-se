@@ -1,20 +1,25 @@
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import { Meta, Title } from '@solidjs/meta';
 
-const PageMeta = ({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) => (
-  <Helmet>
-    <title>{title}</title>
-    <meta name="description" content={description} />
-  </Helmet>
-);
+type PageMetaProps = {
+    title: string;
+    description: string;
+};
 
-export const AppWrapper = ({ children }: { children: React.ReactNode }) => (
-  <HelmetProvider>{children}</HelmetProvider>
-);
+const PageMeta = (props: PageMetaProps) => {
+    return (
+        <>
+            <Title>{props.title}</Title>
+            <Meta name='description' content={props.description} />
+        </>
+    );
+};
+
+type AppWrapperProps = {
+    children: any;
+};
+
+export const AppWrapper = (props: AppWrapperProps) => {
+    return <>{props.children}</>;
+};
 
 export default PageMeta;

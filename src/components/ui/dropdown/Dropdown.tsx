@@ -1,46 +1,39 @@
-import type React from "react";
-import { useEffect, useRef } from "react";
+import { Accessor, Component, createEffect, JSX } from 'solid-js';
 
 interface DropdownProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  className?: string;
+    isOpen: Accessor<boolean>;
+    onClose: () => void;
+    children: JSX.Element[];
+    class?: string;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({
-  isOpen,
-  onClose,
-  children,
-  className = "",
-}) => {
-  const dropdownRef = useRef<HTMLDivElement>(null);
+const Dropdown: Component<DropdownProps> = (props) => {
+    let dropdownRef!: HTMLDivElement;
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        !(event.target as HTMLElement).closest(".dropdown-toggle")
-      ) {
-        onClose();
-      }
-    };
+    // Create an effect to handle clicking outside the dropdown
+    createEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
+                props.onClose();
+            }
+        };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
+        document.addEventListener('mousedown', handleClickOutside);
 
-  if (!isOpen) return null;
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    });
 
-  return (
-    <div
-      ref={dropdownRef}
-      className={`absolute z-40  right-0 mt-2  rounded-xl border border-gray-200 bg-white  shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${className}`}
-    >
-      {children}
-    </div>
-  );
+    if (!props.isOpen()) return null;
+
+    return (
+        <div
+            ref={dropdownRef}
+            class={`absolute z-40 right-0 mt-2 rounded-xl border border-gray-200 bg-white shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${props.class}`}
+        >
+            {props.children}
+        </div>
+    );
 };
+export default Dropdown;

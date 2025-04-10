@@ -1,46 +1,38 @@
-import type React from "react";
-import { Link } from "react-router";
+import { A } from '@solidjs/router';
+import { Component } from 'solid-js';
 
 interface DropdownItemProps {
-  tag?: "a" | "button";
-  to?: string;
-  onClick?: () => void;
-  onItemClick?: () => void;
-  baseClassName?: string;
-  className?: string;
-  children: React.ReactNode;
+    tag?: 'a' | 'button';
+    to?: string;
+    onClick?: () => void;
+    onItemClick?: () => void;
+    baseClassName?: string;
+    class?: string;
+    children: any;
 }
 
-export const DropdownItem: React.FC<DropdownItemProps> = ({
-  tag = "button",
-  to,
-  onClick,
-  onItemClick,
-  baseClassName = "block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-  className = "",
-  children,
-}) => {
-  const combinedClasses = `${baseClassName} ${className}`.trim();
+const DropdownItem: Component<DropdownItemProps> = (props) => {
+    const combinedClasses = `${props.baseClassName} ${props.class}`.trim();
 
-  const handleClick = (event: React.MouseEvent) => {
-    if (tag === "button") {
-      event.preventDefault();
+    const handleClick = (event: MouseEvent) => {
+        event.preventDefault();
+        if (props.onClick) props.onClick();
+        if (props.onItemClick) props.onItemClick();
+    };
+
+    if (props.tag === 'a' && props.to) {
+        return (
+            <A href={props.to} class={combinedClasses} onClick={handleClick}>
+                {props.children}
+            </A>
+        );
     }
-    if (onClick) onClick();
-    if (onItemClick) onItemClick();
-  };
 
-  if (tag === "a" && to) {
     return (
-      <Link to={to} className={combinedClasses} onClick={handleClick}>
-        {children}
-      </Link>
+        <button onClick={handleClick} class={combinedClasses}>
+            {props.children}
+        </button>
     );
-  }
-
-  return (
-    <button onClick={handleClick} className={combinedClasses}>
-      {children}
-    </button>
-  );
 };
+
+export default DropdownItem;

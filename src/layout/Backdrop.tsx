@@ -1,16 +1,17 @@
-import { useSidebar } from "../context/SidebarContext";
+import { Component, Show } from 'solid-js';
+import { useSidebar } from '../context/SidebarContext';
 
-const Backdrop: React.FC = () => {
-  const { isMobileOpen, toggleMobileSidebar } = useSidebar();
+const Backdrop: Component = () => {
+    const { isMobileOpen, toggleMobileSidebar } = useSidebar();
 
-  if (!isMobileOpen) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-40 bg-gray-900/50 lg:hidden"
-      onClick={toggleMobileSidebar}
-    />
-  );
+    return (
+        <Show when={isMobileOpen()}>
+            <div
+                class='fixed inset-0 z-40 bg-gray-900 bg-opacity-50 lg:hidden'
+                onClick={toggleMobileSidebar}
+            />
+        </Show>
+    );
 };
 
 export default Backdrop;
