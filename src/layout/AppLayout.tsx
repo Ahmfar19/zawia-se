@@ -18,8 +18,9 @@ const LayoutContent = (props: MainLayoutProps) => {
                 <Backdrop />
             </div>
             <div
-                class={`flex-1 transition-all duration-300 ease-in-out ${isExpanded() || isHovered() ? 'lg:ml-[290px]' : 'lg:ml-[90px]'
-                    } ${isMobileOpen() ? 'ml-0' : ''}`}
+                class={`flex-1 transition-all duration-300 ease-in-out ${
+                    isExpanded() || isHovered() ? 'lg:ml-[290px]' : 'lg:ml-[90px]'
+                } ${isMobileOpen() ? 'ml-0' : ''}`}
             >
                 <AppHeader />
                 <div class='p-4 mx-auto max-w-screen-2xl md:p-6'>

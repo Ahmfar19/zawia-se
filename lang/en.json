@@ -5,5 +5,24 @@
     "zw_sidebar_title_others": "Others",
     "zw_sidebar_title_members": "Members",
     "zw_sidebar_title_new_members": "New Member",
-    "zw_sidebar_title_all_members": "All Members"
+    "zw_sidebar_title_all_members": "All Members",
+
+    "zw_button_save_changes": "Save changes",
+    "zw_button_cancel": "Cancel",
+
+    "zw_form_adress": "Adress",
+    "zw_form_adress_street": "Street",
+    "zw_form_adress_City": "City",
+    "zw_form_adress_zip": "Post code",
+    "zw_form_adress_country": "Country",
+    "zw_form_personalInfor": "Personal information",
+    "zw_form_fname": "First name",
+    "zw_form_lname": "Last name",
+    "zw_form_email": "Email",
+    "zw_form_phoneNumber": "Phone number",
+    "zw_form_personalNumber": "Personal number",
+    "zw_form_gender_male": "Male",
+    "zw_form_gender_femele": "Female",
+    "zw_form_gender": "Gender",
+    "zw_form_select_country": "--Select Country--"
 }

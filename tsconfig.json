@@ -18,7 +18,7 @@
     },
     "include": [
         "src",
-        ".eslintrc.cjs",
+        ".eslintrc.cjs"
     ],
     "exclude": [
         "src/assets/vendor"

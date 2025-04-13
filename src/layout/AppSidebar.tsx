@@ -133,16 +133,20 @@ const AppSidebar: Component = () => {
                                 onClick={() => handleSubmenuToggle(index(), menuType)}
                                 class={'menu-item group cursor-pointer'}
                                 classList={{
-                                    'menu-item-active': openSubmenu()?.type === menuType && openSubmenu()?.index === index(),
-                                    'menu-item-inactive': !(openSubmenu()?.type === menuType && openSubmenu()?.index === index()),
+                                    'menu-item-active': openSubmenu()?.type === menuType
+                                        && openSubmenu()?.index === index(),
+                                    'menu-item-inactive':
+                                        !(openSubmenu()?.type === menuType && openSubmenu()?.index === index()),
                                     'lg:justify-center': !isExpanded() && !isHovered(),
                                     'lg:justify-start': !(!isExpanded() && !isHovered()),
                                 }}
                             >
                                 <span
                                     classList={{
-                                        'menu-item-icon-active': openSubmenu()?.type === menuType && openSubmenu()?.index === index(),
-                                        'menu-item-icon-inactive': !(openSubmenu()?.type === menuType && openSubmenu()?.index === index()),
+                                        'menu-item-icon-active': openSubmenu()?.type === menuType
+                                            && openSubmenu()?.index === index(),
+                                        'menu-item-icon-inactive':
+                                            !(openSubmenu()?.type === menuType && openSubmenu()?.index === index()),
                                     }}
                                 >
                                     <i class={nav.icon + ' text-base text-gray-400 hover:text-gray-600'} />
@@ -165,14 +169,16 @@ const AppSidebar: Component = () => {
                         <Show when={nav.path}>
                             <A
                                 href={nav.path!}
-                                class={`menu-item group ${isActive(nav.path!) ? 'menu-item-active' : 'menu-item-inactive'
-                                    }`}
+                                class={`menu-item group ${
+                                    isActive(nav.path!) ? 'menu-item-active' : 'menu-item-inactive'
+                                }`}
                             >
                                 <span
-                                    class={`${isActive(nav.path!)
-                                        ? 'menu-item-icon-active'
-                                        : 'menu-item-icon-inactive'
-                                        }`}
+                                    class={`${
+                                        isActive(nav.path!)
+                                            ? 'menu-item-icon-active'
+                                            : 'menu-item-icon-inactive'
+                                    }`}
                                 >
                                     <i class={nav.icon + ' text-base text-gray-400 hover:text-gray-600'} />
                                 </span>
@@ -198,29 +204,32 @@ const AppSidebar: Component = () => {
                                         <li>
                                             <A
                                                 href={subItem.path}
-                                                class={`menu-dropdown-item ${isActive(subItem.path)
-                                                    ? 'menu-dropdown-item-active'
-                                                    : 'menu-dropdown-item-inactive'
-                                                    }`}
+                                                class={`menu-dropdown-item ${
+                                                    isActive(subItem.path)
+                                                        ? 'menu-dropdown-item-active'
+                                                        : 'menu-dropdown-item-inactive'
+                                                }`}
                                             >
-                                                {(t(subItem.name))}
+                                                {t(subItem.name)}
                                                 <span class='flex items-center gap-1 ml-auto'>
                                                     {subItem.new && (
                                                         <span
-                                                            class={`ml-auto ${isActive(subItem.path)
-                                                                ? 'menu-dropdown-badge-active'
-                                                                : 'menu-dropdown-badge-inactive'
-                                                                } menu-dropdown-badge`}
+                                                            class={`ml-auto ${
+                                                                isActive(subItem.path)
+                                                                    ? 'menu-dropdown-badge-active'
+                                                                    : 'menu-dropdown-badge-inactive'
+                                                            } menu-dropdown-badge`}
                                                         >
                                                             new
                                                         </span>
                                                     )}
                                                     {subItem.pro && (
                                                         <span
-                                                            class={`ml-auto ${isActive(subItem.path)
-                                                                ? 'menu-dropdown-badge-active'
-                                                                : 'menu-dropdown-badge-inactive'
-                                                                } menu-dropdown-badge`}
+                                                            class={`ml-auto ${
+                                                                isActive(subItem.path)
+                                                                    ? 'menu-dropdown-badge-active'
+                                                                    : 'menu-dropdown-badge-inactive'
+                                                            } menu-dropdown-badge`}
                                                         >
                                                             pro
                                                         </span>
@@ -246,7 +255,7 @@ const AppSidebar: Component = () => {
             onMouseEnter={() => !isExpanded() && setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div class={`py-8 flex ${!isExpanded() && !isHovered() ? 'lg:justify-center' : 'justify-start'}`} >
+            <div class={`py-8 flex ${!isExpanded() && !isHovered() ? 'lg:justify-center' : 'justify-start'}`}>
                 <A href='/'>
                     {isExpanded() || isHovered() || isMobileOpen()
                         ? (
@@ -282,21 +291,20 @@ const AppSidebar: Component = () => {
                     <div class='flex flex-col gap-4'>
                         <div>
                             <h2
-                                class={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded() && !isHovered()
-                                    ? 'lg:justify-center'
-                                    : 'justify-start'
-                                    }`}
+                                class={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
+                                    !isExpanded() && !isHovered()
+                                        ? 'lg:justify-center'
+                                        : 'justify-start'
+                                }`}
                             >
                                 {t('zw_sidebar_title_menu')}
                             </h2>
                             {renderMenuItems(navItems, 'main')}
-
                         </div>
                         <div class=''>
                             <h2
                                 class={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 
-                                    ${!isExpanded() && !isHovered() ? 'lg:justify-center' : 'justify-start'}`
-                                }
+                                    ${!isExpanded() && !isHovered() ? 'lg:justify-center' : 'justify-start'}`}
                             >
                                 {t('zw_sidebar_title_others')}
                             </h2>
